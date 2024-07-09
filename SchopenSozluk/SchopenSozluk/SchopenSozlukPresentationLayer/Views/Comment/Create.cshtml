@@ -1,0 +1,21 @@
+﻿@model SchopenSozlukEntityLayer.Concrete.Comment
+
+@{
+    ViewData["Title"] = "Yorum Oluştur";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-controller="Comment" asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <input type="hidden" asp-for="EntryId" />
+
+    <div class="form-group">
+        <label asp-for="Content" class="control-label"></label>
+        <textarea id="content" name="Content" class="form-control"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Yorum Gönder</button>
+</form>

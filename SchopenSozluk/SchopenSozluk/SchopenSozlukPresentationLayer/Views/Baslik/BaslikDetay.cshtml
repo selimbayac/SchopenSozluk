@@ -1,0 +1,131 @@
+﻿@model SchopenSozlukPresentationLayer.Models.BaslikDetayViewModel
+
+@{
+    ViewData["Title"] = "Başlık Detayı";
+}
+
+<style>
+    .entry-container {
+        border: 2px solid #5a7d9a;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        padding: 20px;
+        background-color: #f3f7f7;
+    }
+
+    .entry-content {
+        margin-bottom: 10px;
+    }
+
+    .entry-meta {
+        color: #777;
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .comment-toggle {
+        color: #007bff;
+        cursor: pointer;
+    }
+
+    .comment-list {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .comment-item {
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+        .comment-item:last-child {
+            border-bottom: none;
+        }
+
+    .comment-username {
+        font-weight: bold;
+        color: #333;
+    }
+</style>
+
+<h2>@Model.Baslik.Name</h2>
+<link rel="stylesheet" type="text/css" href="~/css/home.css" />
+@if (Model.Baslik.Entries != null && Model.Baslik.Entries.Any())
+{
+    <h3>Entry'ler</h3>
+    <ul>
+        @foreach (var entry in Model.Baslik.Entries)
+        {
+            <li class="entry-container">
+                <div class="entry-content">
+                    <p>@entry.Content</p>
+                    <div class="entry-meta">
+                        Yazan: @(entry.User != null ? entry.User.UserName : "Bilinmeyen Kullanıcı") -
+                        Like: @entry.LikesCount -
+                        Dislike: @entry.DislikesCount -
+                        Yazılma Tarihi: @entry.CreatedAt
+                    </div>
+                    <button class="comment-toggle" onclick="toggleComments(@entry.Id)">Yorumları Göster</button>
+                    <div id="comments-@entry.Id" style="display:none;">
+                        @if (entry.Comments != null && entry.Comments.Any())
+                        {
+                            <h4>Yorumlar</h4>
+                            <ul class="comment-list">
+                                @foreach (var comment in entry.Comments)
+                                {
+                                    <li class="comment-item">
+                                        <span class="comment-username">@comment.User.UserName</span>: @comment.Content
+                                    </li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <p>Bu entry altında henüz yorum bulunmamaktadır.</p>
+                        }
+
+                        <!-- Yorum Ekleme Formu -->
+                        <form asp-controller="Comment" asp-action="Create" method="post">
+                            <input type="hidden" name="EntryId" value="@entry.Id" />
+                            <div class="form-group">
+                                <label for="content">Yorum:</label>
+                                <textarea id="content" name="content" class="form-control"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Yorum Gönder</button>
+                        </form>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>Bu başlık altında henüz entry bulunmamaktadır.</p>
+}
+
+<div>
+    <h3>Entry Ekle</h3>
+    <form asp-controller="Entry" asp-action="Create" method="post">
+        <input type="hidden" name="BaslikId" value="@Model.Baslik.Id" />
+        <div class="form-group">
+            <label for="entryContent">Entry İçeriği:</label>
+            <textarea id="entryContent" name="content" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Entry Gönder</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        function toggleComments(entryId) {
+            var commentsDiv = document.getElementById('comments-' + entryId);
+            if (commentsDiv.style.display === 'none') {
+                commentsDiv.style.display = 'block';
+            } else {
+                commentsDiv.style.display = 'none';
+            }
+        }
+    </script>
+}

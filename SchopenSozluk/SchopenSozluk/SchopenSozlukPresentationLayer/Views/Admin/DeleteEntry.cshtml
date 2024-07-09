@@ -1,0 +1,54 @@
+﻿@model IEnumerable<SchopenSozlukEntityLayer.Concrete.Entry>
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+    <a class="navbar-brand" href="#">Admin Menü</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#adminMenu" aria-controls="adminMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="adminMenu">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Admin" asp-action="DeleteEntry">Entry Sil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Admin" asp-action="AssignAdminRole">Admin Rolü Ata</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Admin" asp-action="ListUsers">Kullanıcıları Listele</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<h1>Entry Listesi</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Başlık</th>
+            <th>İçerik</th>
+            <th>Oluşturulma Tarihi</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var entry in Model)
+        {
+            <tr>
+                <td>@entry.Id</td>
+                <td>@(entry.Baslik?.Name ?? "Başlık yok")</td>
+                <td>@entry.Content</td>
+                <td>@entry.CreatedAt.ToString("dd.MM.yyyy HH:mm:ss")</td>
+                <td>
+                    <form asp-controller="Admin" asp-action="DeleteEntry" method="post">
+                        <input type="hidden" name="id" value="@entry.Id" />
+                        <button type="submit" class="btn btn-danger"
+                                onclick="return confirm('Bu entry\'yi silmek istediğinize emin misiniz?')">
+                            Sil
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

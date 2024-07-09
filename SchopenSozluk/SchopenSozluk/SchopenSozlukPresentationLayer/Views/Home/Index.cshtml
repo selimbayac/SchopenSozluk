@@ -1,0 +1,201 @@
+﻿@model SchopenSozlukPresentationLayer.Models.HomeIndexViewModel
+@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<style>
+    .entry-container {
+        border: 2px solid #5a7d9a;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        padding: 20px;
+        background-color: #f3f7f7;
+    }
+
+    .entry-content {
+        margin-bottom: 10px;
+    }
+
+    .entry-meta {
+        color: #777;
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .entry-actions {
+        margin-top: 10px;
+    }
+
+    .btn-like,
+    .btn-dislike {
+        margin-right: 10px;
+    }
+
+    .like-dislike-icons {
+        display: flex;
+        align-items: center;
+    }
+
+        .like-dislike-icons img {
+            width: 24px;
+            height: 24px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+    /* Sidebar stilleri */
+    .sidebar {
+        height: 100vh;
+        position: fixed;
+        top: 56px; /* Navbar'ın yüksekliği */
+        left: 0;
+        padding-top: 1rem;
+        width: 240px;
+        background-color: #f8f9fa;
+        box-shadow: 2px 0 5px rgba(0,0,0,.1);
+        z-index: 1050;
+        overflow-y: auto; /* Eğer içerik fazla olursa scrollbar göster */
+    }
+
+        .sidebar .list-group-item {
+            border: none;
+            cursor: pointer;
+        }
+
+            .sidebar .list-group-item:hover {
+                background-color: #e9ecef;
+            }
+
+</style>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+            <img src="~/images/logo.png" alt="SchopenSozluk"> SchopenSozluk
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            &#9776; <!-- Hamburger icon -->
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline my-2 my-lg-0 ml-auto" asp-area="" asp-controller="Home" asp-action="Search">
+                <input class="form-control mr-sm-2" type="search" placeholder="Başlık ara" aria-label="Search" name="query">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ara</button>
+            </form>
+            <ul class="navbar-nav ml-2">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        <span class="nav-link">Hoş geldin, @User.Identity.Name!</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="MyProfile" asp-action="Index">Profilim</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Baslik" asp-action="Create">Entry Oluştur</a>
+                    </li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-secondary text-white" asp-area="" asp-controller="Admin" asp-action="Index">Admin Panel</a>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        <form asp-controller="Account" asp-action="Logout" method="post">
+                            <button type="submit" class="btn btn-danger">Çıkış Yap</button>
+                        </form>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Login" asp-action="Index">Giriş</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Register" asp-action="Index">Kaydol</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<!-- Sol Taraftaki Başlık Menüsü -->
+@* <nav class="sidebar">
+    <div class="list-group">
+        <h4 class="list-group-item active">En Yeniler</h4>
+        @foreach (var baslik in Model.Basliklar.OrderByDescending(b => b.CreatedAt).Take(15)) // En son eklenen ilk 5 başlık
+        {
+            <a href="@Url.Action("BaslikDetay", "Baslik", new { id = baslik.Id })" class="list-group-item list-group-item-action">
+                @baslik.Name
+            </a>
+        }
+    </div>
+</nav> *@
+
+<main role="main" class="container">
+    <h2>Başlıklar</h2>
+    <div>
+        @foreach (var baslik in Model.Basliklar)
+        {
+            <div class="entry-container">
+                <h3>@Html.ActionLink(baslik.Name, "BaslikDetay", "Baslik", new { id = baslik.Id }, null)</h3>
+                @if (baslik.Entries != null)
+                {
+                    @foreach (var entry in baslik.Entries.Take(2)) // İlk 2 entry'i göster
+                    {
+                        <div class="entry-content">
+                            <p>@entry.Content</p>
+                            <div class="entry-meta">
+                                Yazan: <a href="@Url.Action("UserProfile", "MyProfile", new { username = entry.User.UserName })">
+                                    @(entry.User != null ? entry.User.UserName : "Bilinmeyen Kullanıcı")
+                                </a> -
+                                Like: @entry.LikesCount -
+                                Dislike: @entry.DislikesCount -
+                                Yazılma tarihi: @entry.CreatedAt.Date.ToString("dd/MM/yyyy")
+                            </div>
+                            <div class="entry-actions">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <div class="like-dislike-icons">
+                                        <form method="post" asp-controller="Home" asp-action="EntryBegeni">
+                                            <input type="hidden" name="entryId" value="@entry.Id" />
+                                            <button type="submit" class="btn btn-link btn-like">
+                                                <img src="/images/Like.png" alt="Like" />
+                                            </button>
+                                        </form>
+                                        <form method="post" asp-controller="Home" asp-action="EntryDislike">
+                                            <input type="hidden" name="entryId" value="@entry.Id" />
+                                            <button type="submit" class="btn btn-link btn-dislike">
+                                                <img src="/images/Dislike.png" alt="Dislike" />
+                                            </button>
+                                        </form>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <p>Beğenmek veya yorum yapmak için <a class="nav-link" asp-area="" asp-controller="Login" asp-action="Index">Giriş</a></p>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        }
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <span class="text-muted">&copy; 2024 SchopenSozluk</span>
+        <span class="text-muted">| <a href="/Privacy" class="text-muted">Privacy Policy</a> | <a href="/Terms" class="text-muted">Terms of Service</a></span>
+    </div>
+</footer>
+
+@section Scripts {
+    <script>
+        // Hamburger icon click event
+        $('.navbar-toggler').on('click', function () {
+            $('.sidebar').toggleClass('show');
+        });
+    </script>
+}

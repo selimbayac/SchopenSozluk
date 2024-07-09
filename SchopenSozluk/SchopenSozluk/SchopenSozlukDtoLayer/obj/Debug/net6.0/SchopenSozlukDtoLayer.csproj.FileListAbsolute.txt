@@ -1,0 +1,14 @@
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDtoLayer\bin\Debug\net6.0\SchopenSozlukDtoLayer.deps.json
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDtoLayer\bin\Debug\net6.0\SchopenSozlukDtoLayer.runtimeconfig.json
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDtoLayer\bin\Debug\net6.0\SchopenSozlukDtoLayer.dll
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDtoLayer\bin\Debug\net6.0\SchopenSozlukDtoLayer.pdb
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDtoLayer\obj\Debug\net6.0\SchopenSozlukDtoLayer.csproj.AssemblyReference.cache
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDtoLayer\obj\Debug\net6.0\SchopenSozlukDtoLayer.GeneratedMSBuildEditorConfig.editorconfig
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDtoLayer\obj\Debug\net6.0\SchopenSozlukDtoLayer.AssemblyInfoInputs.cache
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDtoLayer\obj\Debug\net6.0\SchopenSozlukDtoLayer.AssemblyInfo.cs
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDtoLayer\obj\Debug\net6.0\SchopenSozlukDtoLayer.csproj.CoreCompileInputs.cache
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDtoLayer\obj\Debug\net6.0\SchopenSozlukDtoLayer.dll
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDtoLayer\obj\Debug\net6.0\refint\SchopenSozlukDtoLayer.dll
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDtoLayer\obj\Debug\net6.0\SchopenSozlukDtoLayer.pdb
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDtoLayer\obj\Debug\net6.0\SchopenSozlukDtoLayer.genruntimeconfig.cache
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDtoLayer\obj\Debug\net6.0\ref\SchopenSozlukDtoLayer.dll

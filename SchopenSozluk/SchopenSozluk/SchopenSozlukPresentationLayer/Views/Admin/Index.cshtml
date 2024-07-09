@@ -1,0 +1,57 @@
+﻿@model List<SchopenSozlukEntityLayer.Concrete.Baslik>
+
+<h1>Admin Panel</h1>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+    <a class="navbar-brand" href="#">Admin Menü</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#adminMenu" aria-controls="adminMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="adminMenu">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Admin" asp-action="DeleteEntry">Entry Sil</a>
+            </li>
+         
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Admin" asp-action="AssignAdminRole">Admin Rolü Ata</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Admin" asp-action="ListUsers">Kullanıcıları Listele</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<h2>Başlıklar</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Başlık Adı</th>
+            <th>Oluşturulma Tarihi</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var baslik in Model)
+        {
+            <tr>
+                <td>@baslik.Id</td>
+                <td>@baslik.Name</td>
+                <td>@baslik.CreatedAt.ToString("dd.MM.yyyy HH:mm:ss")</td>
+                <td>
+                    <a asp-controller="Admin" asp-action="DeleteBaslik" asp-route-id="@baslik.Id" class="btn btn-danger"
+                       onclick="return confirm('Bu başlığı ve altındaki tüm entry\'leri silmek istediğinize emin misiniz?')">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+}

@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SchopenSozluk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #4c4c4c;
+            padding-top: 56px; /* Navbar yüksekliğini ekleyin */
+        }
+
+        .navbar {
+            box-shadow: 0 4px 6px rgba(0,0,0,.1);
+            z-index: 1000;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+        }
+
+        .sidebar {
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: -240px; /* Sidebar'ı başlangıçta gizle */
+            padding-top: 60px; /* Navbar'ın yüksekliği */
+            width: 240px;
+            background-color: #f8f9fa;
+            box-shadow: 2px 0 5px rgba(0,0,0,.1);
+            transition: left 0.3s; /* Animasyon efekti için geçiş */
+            z-index: 1050; /* Navbar'ın üzerinde olmasını sağlayın */
+        }
+
+            .sidebar.show {
+                left: 0; /* Sidebar'ı göster */
+            }
+
+            .sidebar .nav-link {
+                font-weight: 500;
+                color: #333;
+            }
+
+                .sidebar .nav-link:hover {
+                    background-color: #e9ecef;
+                    border-radius: 5px;
+                }
+
+        main {
+            margin-left: 0; /* Sidebar kapalıyken içeriğin sola yaslanması */
+            padding: 20px;
+            margin-top: 60px; /* Navbar'ın içeriği kapatmaması için üst boşluk */
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            z-index: 999;
+        }
+
+            .footer .container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .footer .text-muted {
+                color: #ccc;
+            }
+
+                .footer .text-muted a {
+                    color: #ccc;
+                    text-decoration: none;
+                }
+
+                    .footer .text-muted a:hover {
+                        text-decoration: underline;
+                    }
+
+        /* Navbar için stiller */
+        .navbar-toggler {
+            border: none;
+            outline: none;
+            background: transparent;
+            color: #000;
+            font-size: 1.5rem;
+        }
+
+            .navbar-toggler:hover {
+                color: #333;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="~/images/logo.png" alt="SchopenSozluk"> SchopenSozluk
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                &#9776; <!-- Hamburger icon -->
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="form-inline my-2 my-lg-0 ml-auto" asp-area="" asp-controller="Home" asp-action="Search">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Başlık ara" aria-label="Search" name="query">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ara</button>
+                </form>
+                <ul class="navbar-nav ml-2">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <span class="nav-link">Hoş geldin, @User.Identity.Name!</span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="MyProfile" asp-action="Index">Profilim</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Baslik" asp-action="Create">Entry Oluştur</a>
+                        </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-secondary text-white" asp-area="" asp-controller="Admin" asp-action="Index">Admin Panel</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <form asp-controller="Account" asp-action="Logout" method="post">
+                                <button type="submit" class="btn btn-danger">Çıkış Yap</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Login" asp-action="Index">Giriş</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Register" asp-action="Index">Kaydol</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main" class="container">
+        @RenderBody()
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">&copy; 2024 SchopenSozluk</span>
+            <span class="text-muted">| <a href="/Privacy" class="text-muted">Privacy Policy</a> | <a href="/Terms" class="text-muted">Terms of Service</a></span>
+        </div>
+    </footer>
+
+    @RenderSection("Scripts", required: false)
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        // Hamburger icon click event
+        $('.navbar-toggler').on('click', function () {
+            $('.sidebar').toggleClass('show');
+        });
+    </script>
+</body>
+</html>

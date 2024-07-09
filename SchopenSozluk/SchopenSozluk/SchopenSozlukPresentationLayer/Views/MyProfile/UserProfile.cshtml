@@ -1,0 +1,91 @@
+﻿@model SchopenSozlukPresentationLayer.Models.UserProfileViewModel
+
+@{
+    ViewData["Title"] = "Profil: " + Model.UserName;
+}
+
+<style>
+    .profile-header {
+        background-color: #007bff;
+        color: #fff;
+        padding: 20px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .profile-details {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+        .profile-details h2 {
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+    .profile-bio {
+        font-size: 16px;
+        margin-bottom: 30px;
+    }
+
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .list-group-item {
+        border: none;
+        border-bottom: 1px solid #eee;
+        font-size: 18px;
+        text-align: center;
+        transition: color 0.3s; /* Geçiş efekti */
+    }
+
+        .list-group-item:last-child {
+            border-bottom: none;
+        }
+
+        .list-group-item a {
+            color: #007bff; /* Mavi renk */
+            text-decoration: none; /* Alt çizgi kaldırma */
+            transition: color 0.3s; /* Geçiş efekti */
+        }
+
+            .list-group-item a:hover {
+                color: #0056b3; /* Farklı mavi tonu */
+            }
+</style>
+
+<div class="container">
+    <div class="card shadow-lg mb-4">
+        <div class="profile-header">
+            <div class="profile-details">
+                <h2>@Model.Name @Model.Surname</h2>
+                @if (!string.IsNullOrEmpty(Model.Bio))
+                {
+                    <p class="profile-bio">@Model.Bio</p>
+                }
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="text-center">
+                <h3 class="section-title">Açtığı Başlıklar</h3>
+            </div>
+            @if (Model.Basliklar.Any())
+            {
+                <ul class="list-group list-group-flush">
+                    @foreach (var baslik in Model.Basliklar)
+                    {
+                        <li class="list-group-item">
+                            <a asp-controller="Baslik" asp-action="BaslikDetay" asp-route-id="@baslik.Id">@baslik.Name</a>
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p class="text-center mt-3">Henüz başlık açmamış.</p>
+            }
+        </div>
+    </div>
+</div>

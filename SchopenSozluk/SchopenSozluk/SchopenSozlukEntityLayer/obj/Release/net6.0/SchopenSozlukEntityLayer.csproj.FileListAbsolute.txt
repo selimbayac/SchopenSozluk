@@ -1,0 +1,14 @@
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukEntityLayer\bin\Release\net6.0\SchopenSozlukEntityLayer.deps.json
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukEntityLayer\bin\Release\net6.0\SchopenSozlukEntityLayer.runtimeconfig.json
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukEntityLayer\bin\Release\net6.0\SchopenSozlukEntityLayer.dll
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukEntityLayer\bin\Release\net6.0\SchopenSozlukEntityLayer.pdb
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukEntityLayer\obj\Release\net6.0\SchopenSozlukEntityLayer.csproj.AssemblyReference.cache
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukEntityLayer\obj\Release\net6.0\SchopenSozlukEntityLayer.GeneratedMSBuildEditorConfig.editorconfig
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukEntityLayer\obj\Release\net6.0\SchopenSozlukEntityLayer.AssemblyInfoInputs.cache
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukEntityLayer\obj\Release\net6.0\SchopenSozlukEntityLayer.AssemblyInfo.cs
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukEntityLayer\obj\Release\net6.0\SchopenSozlukEntityLayer.csproj.CoreCompileInputs.cache
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukEntityLayer\obj\Release\net6.0\SchopenSozlukEntityLayer.dll
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukEntityLayer\obj\Release\net6.0\refint\SchopenSozlukEntityLayer.dll
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukEntityLayer\obj\Release\net6.0\SchopenSozlukEntityLayer.pdb
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukEntityLayer\obj\Release\net6.0\SchopenSozlukEntityLayer.genruntimeconfig.cache
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukEntityLayer\obj\Release\net6.0\ref\SchopenSozlukEntityLayer.dll

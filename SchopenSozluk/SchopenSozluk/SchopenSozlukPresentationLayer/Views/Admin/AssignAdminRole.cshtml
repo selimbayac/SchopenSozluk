@@ -1,0 +1,58 @@
+﻿@model IEnumerable<SchopenSozlukPresentationLayer.Models.AssignAdminRoleViewModel>
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+    <a class="navbar-brand" href="#">Admin Menü</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#adminMenu" aria-controls="adminMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="adminMenu">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Admin" asp-action="DeleteEntry">Entry Sil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Admin" asp-action="AssignAdminRole">Admin Rolü Ata</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Admin" asp-action="ListUsers">Kullanıcıları Listele</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<h1>Kullanıcı Listesi</h1>
+
+<form asp-controller="Admin" asp-action="AssignAdminRoleToSelectedUsers" method="post">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Seç</th>
+                <th>Kullanıcı Adı</th>
+                <th>Email</th>
+                <th>Rol</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" name="selectedUserIds" value="@user.Id" />
+                    </td>
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                    <td>
+                        @if (await ((Microsoft.AspNetCore.Identity.UserManager<SchopenSozlukEntityLayer.Concrete.AppUser>)ViewBag.UserManager).IsInRoleAsync(new SchopenSozlukEntityLayer.Concrete.AppUser { Id = user.Id }, "Admin"))
+                        {
+                            <span class="badge badge-primary">Admin</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-secondary">Kullanıcı</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Seçilenlere Admin Rolü Ata</button>
+</form>

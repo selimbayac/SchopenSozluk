@@ -1,0 +1,17 @@
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDataAccessLayer\bin\Debug\net6.0\SchopenSozlukDataAccessLayer.deps.json
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDataAccessLayer\bin\Debug\net6.0\SchopenSozlukDataAccessLayer.runtimeconfig.json
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDataAccessLayer\bin\Debug\net6.0\SchopenSozlukDataAccessLayer.dll
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDataAccessLayer\bin\Debug\net6.0\SchopenSozlukDataAccessLayer.pdb
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDataAccessLayer\bin\Debug\net6.0\SchopenSozlukEntityLayer.dll
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDataAccessLayer\bin\Debug\net6.0\SchopenSozlukEntityLayer.pdb
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDataAccessLayer\obj\Debug\net6.0\SchopenSozlukDataAccessLayer.csproj.AssemblyReference.cache
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDataAccessLayer\obj\Debug\net6.0\SchopenSozlukDataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDataAccessLayer\obj\Debug\net6.0\SchopenSozlukDataAccessLayer.AssemblyInfoInputs.cache
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDataAccessLayer\obj\Debug\net6.0\SchopenSozlukDataAccessLayer.AssemblyInfo.cs
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDataAccessLayer\obj\Debug\net6.0\SchopenSozlukDataAccessLayer.csproj.CoreCompileInputs.cache
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDataAccessLayer\obj\Debug\net6.0\SchopenSozlukDataAccessLayer.csproj.CopyComplete
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDataAccessLayer\obj\Debug\net6.0\SchopenSozlukDataAccessLayer.dll
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDataAccessLayer\obj\Debug\net6.0\refint\SchopenSozlukDataAccessLayer.dll
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDataAccessLayer\obj\Debug\net6.0\SchopenSozlukDataAccessLayer.pdb
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDataAccessLayer\obj\Debug\net6.0\SchopenSozlukDataAccessLayer.genruntimeconfig.cache
+E:\Masaüstü\SchopenSozluk\SchopenSozluk\SchopenSozlukDataAccessLayer\obj\Debug\net6.0\ref\SchopenSozlukDataAccessLayer.dll
